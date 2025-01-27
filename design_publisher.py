@@ -15,7 +15,7 @@ topic_name = os.environ.get("DESIGN_TOPIC_NAME")
 publisher = pubsub_v1.PublisherClient()
 topic_path = publisher.topic_path(project_id, topic_name)
 
-csv_cols = ["Timestamp", "Car1_Location_X",	"Car1_Location_Y", "Car1_Location_Z","Car2_Location_X","Car2_Location_Y","Car2_Location_Z","Occluded_Image_view","Occluding_Car_view","Ground_Truth_View","pedestrianLocationX_TopLeft","pedestrianLocationY_TopLeft","pedestrianLocationX_BottomRight","pedestrianLocationY_BottomRight"]
+csv_cols = ["Timestamp", "Car1_Location_X", "Car1_Location_Y", "Car1_Location_Z","Car2_Location_X","Car2_Location_Y","Car2_Location_Z","Occluded_Image_view","Occluding_Car_view","Ground_Truth_View","pedestrianLocationX_TopLeft","pedestrianLocationY_TopLeft","pedestrianLocationX_BottomRight","pedestrianLocationY_BottomRight"]
 
 with open("./Labels.csv", mode='r') as file:
     csv_reader = csv.reader(file)
