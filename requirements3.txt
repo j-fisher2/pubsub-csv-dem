@@ -1,0 +1,6 @@
+apache-beam[gcp]
+torch==2.0.1
+torchvision
+opencv-python
+numpy
+timm
