@@ -79,7 +79,7 @@ def run():
         data = (p 
                 | 'ReadFromPubSub' >> beam.io.ReadFromPubSub(topic='projects/phrasal-chiller-451822-a1/topics/pedestrian_input')
                 | 'ProcessPedestrians' >> beam.ParDo(PedestrianDepthFn())
-                | 'PrintResults' >> beam.Map(print) | 'WriteToPubSub' >> beam.io.WriteToPubSub(topic='projects/phrasal-chiller-451822-a1/topics/pedestrian_output'))
+                | 'WriteToPubSub' >> beam.io.WriteToPubSub(topic='projects/phrasal-chiller-451822-a1/topics/pedestrian_output'))
 
 if __name__ == '__main__':
     run()
