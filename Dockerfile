@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
 COPY requirements3.txt .
 
 # Install Python dependencies
-RUN pip install --no-cache-dir -r requirements3.txt
+RUN pip install --no-cache-dir -r requirements3.txt --extra-index-url https://download.pytorch.org/whl/cpu
 
 # Copy script and any local files
 COPY . .
