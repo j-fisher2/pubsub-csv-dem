@@ -70,7 +70,7 @@ class PedestrianDepthFn(beam.DoFn):
                 'confidence': float(ped['confidence'])
             })
 
-        return [json.dumps(output) for output in outputs]
+        return [json.dumps(output).encode('utf-8') for output in outputs]
 
 def run():
     pipeline_options = PipelineOptions()
