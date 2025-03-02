@@ -75,11 +75,18 @@ class PedestrianDepthFn(beam.DoFn):
 def run():
     pipeline_options = PipelineOptions()
     pipeline_options.view_as(SetupOptions).save_main_session = True
+
+    input_topic = os.environ.get('PEDESTRIAN_INPUT_TOPIC')
+    output_topic = os.environ.get('PEDESTRIAN_OUTPUT_TOPIC')
+
+    if not input_topic or not output_topic:
+        raise ValueError("Environment variables for Pub/Sub topics not set.")
+    
     with beam.Pipeline(options=pipeline_options) as p:
         data = (p 
-                | 'ReadFromPubSub' >> beam.io.ReadFromPubSub(topic='projects/phrasal-chiller-451822-a1/topics/pedestrian_input')
+                | 'ReadFromPubSub' >> beam.io.ReadFromPubSub(topic=input_topic)
                 | 'ProcessPedestrians' >> beam.ParDo(PedestrianDepthFn())
-                | 'WriteToPubSub' >> beam.io.WriteToPubSub(topic='projects/phrasal-chiller-451822-a1/topics/pedestrian_output'))
+                | 'WriteToPubSub' >> beam.io.WriteToPubSub(topic=output_topic))
 
 if __name__ == '__main__':
     run()
